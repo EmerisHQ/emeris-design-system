@@ -49,6 +49,10 @@ export default defineComponent({
   inheritAttrs: false,
 
   props: {
+    placeholder: {
+      type: String,
+      default: '',
+    },
     modelValue: {
       type: [String, Number],
       default: '',
@@ -79,7 +83,7 @@ export default defineComponent({
     const hasStartSlot = computed(() => !!slots.start);
     const hasEndSlot = computed(() => !!slots.end);
 
-    return { model, hasStartSlot, hasEndSlot };
+    return { model, hasStartSlot, hasEndSlot, placeholder: props.placeholder };
   },
 });
 </script>
