@@ -1,0 +1,160 @@
+/* Brand gradients */
+$brand-gradient-to-r: linear-gradient(102deg, var(--quinary) -2%, var(--tertiary) 34%, var(--primary) 93%);
+$brand-gradient-to-br: linear-gradient(154deg, var(--quinary) 9.7%, var(--tertiary) 34%, var(--primary) 69%);
+$gold-color-stops: #fff0ca 13%, #d3ad5f 33%, #ffecc4 42%, #997736 59%, #fff2c0 78%, #cea851 97%;
+$gold-to-r: linear-gradient(90deg, $gold-color-stops);
+$gold-to-b: linear-gradient(180deg, $gold-color-stops);
+$gold-to-br: linear-gradient(135deg, $gold-color-stops);
+/* Light mode custom properties */
+@mixin themeLight {
+  --text: #000;
+  --muted: rgba(0, 0, 0, 0.67);
+  --inactive: rgba(0, 0, 0, 0.33);
+  --inverse: #fff;
+  --transparent: rgba(255, 255, 255, 0);
+  --bg: #fff;
+  --darkBanner: #171717;
+  // --bg-image: 148px repeat url('../images/texture-grain.png'), #fff;
+  --bg-image: var(--bg); // Gautier doesn't like the grain
+  --fg: rgba(0, 0, 0, 0.03);
+  --fg-solid: #f7f7f7;
+  --surface: #fff;
+  --surface-image: var(--surface);
+  --surface-2: #fff;
+  --surface-2-image: var(--surface-2);
+  --border: rgba(0, 0, 0, 0.07);
+  --link: #094efd;
+  --link-hover: var(--text);
+  --positive: #00cf30;
+  --positive-text: #008223;
+  --negative: #fe475f;
+  --negative-text: #d80228;
+  --warning: #fb7c07;
+}
+/* Dark mode custom properties */
+@mixin themeDark {
+  --text: #fff;
+  --muted: rgba(255, 255, 255, 0.67);
+  --inactive: rgba(255, 255, 255, 0.44);
+  --inverse: #000;
+  --transparent: rgba(0, 0, 0, 0);
+  --bg: #000;
+  --darkBanner: #171717;
+  --bg-image: 148px repeat url('../images/bg-dark.jpg'), #000;
+  --fg: rgba(255, 255, 255, 0.1);
+  --fg-solid: #1f1f1f;
+  --surface: #181818;
+  --surface-image: 148px repeat url('../images/texture-grain.png'), #171717;
+  --surface-2: #262626;
+  --surface-2-image: 148px repeat url('../images/texture-grain.png'), #232323;
+  --border: rgba(255, 255, 255, 0.09);
+  --link: var(--quinary);
+  --link-hover: #fff;
+  --positive: #42ed05;
+  --positive-text: #89ff9b;
+  --negative: #ff3d56;
+  --negative-text: #ff6072;
+  --warning: #fb7c07;
+}
+
+/* Brand colors */
+:root {
+  --primary: #fffd38;
+  --secondary: #a8ff89;
+  --tertiary: #30ffdf;
+  --quaternary: #4ef2e4;
+  --quinary: #64dafb;
+  --gold: #d5bc83;
+}
+/*
+  Currently only `prefers-color-scheme` is supported.
+  Later, we'll have a setting to set the theme manually.
+  This will require careful attention to specificity for inverse theme classes.
+*/
+/* Light theme */
+:root {
+  @include themeLight;
+}
+/* + Elements with inverse theme in light mode */
+.theme-inverse {
+  @include themeDark;
+}
+
+/* Dark theme:
+ * It will prefer system option on initial render.
+ * Then when the class is programatically set as 'dark' or 'light' (loaded from localStorage),
+ * it overrides css variables;
+ */
+@media (prefers-color-scheme: dark) {
+  html:not(.light) {
+    @include themeDark;
+
+    /* Elements with inverse theme in dark mode */
+    .dark\:theme-inverse {
+      @include themeLight;
+    }
+  }
+}
+html.dark {
+  @include themeDark;
+
+  /* Elements with inverse theme in dark mode */
+  .dark\:theme-inverse {
+    @include themeLight;
+  }
+}
+
+/* Custom color utilities */
+@layer utilities {
+  /* Background utilities */
+  .bg-app {
+    background: var(--bg-image);
+  }
+  .bg-fg {
+    background: var(--fg);
+  }
+  .bg-surface {
+    background: var(--surface-image);
+  }
+  .bg-surface-2 {
+    background: var(--surface-2-image);
+  }
+}
+@layer utilities {
+  /* Background utilities */
+  .bg-brand {
+    background: center / cover no-repeat url('../images/gradient-primary.jpg'), var(--primary);
+  }
+  .bg-brand-to-r {
+    background: var(--primary) $brand-gradient-to-r;
+  }
+  .bg-brand-to-br {
+    background: var(--primary) $brand-gradient-to-br;
+  }
+  .bg-gold-circular {
+    background: center / cover no-repeat url('../../assets/images/texture-gold-circular.jpg'), var(--gold);
+  }
+  .bg-gold-to-r {
+    background: var(--gold) $gold-to-r;
+  }
+  .bg-gold-to-b {
+    background: var(--gold) $gold-to-b;
+  }
+  .bg-gold-to-br {
+    background: var(--gold) $gold-to-br;
+  }
+}
+
+/* Border utilities */
+@layer utilities {
+  .border-brand {
+    border-color: var(--primary);
+    border-image: url('../images/gradient-primary.jpg');
+    border-image-slice: 20%;
+  }
+  .border-gold-circular {
+    border-color: var(--gold);
+    border-image: url('../../assets/images/texture-gold-circular.jpg');
+    border-image-slice: 20%;
+  }
+}
