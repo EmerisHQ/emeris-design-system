@@ -1,8 +1,8 @@
 
 # Installing
 1. `git clone https://github.com/EmerisHQ/emeris-design-system.git`
-2. `yarn install`
-3. `yarn run storybook`
+2. `yarn`
+3. `yarn storybook`
 
 # Stack
 - Vue 3
