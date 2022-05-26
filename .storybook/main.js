@@ -4,7 +4,7 @@ const WindiCSS = require("vite-plugin-windicss").default;
 
 module.exports = {
   stories: ['../src/components/**/*.stories.js'],
-  addons: ["@storybook/addon-links", "@storybook/addon-essentials", 'storybook-addon-themes'],
+  addons: ["@storybook/addon-links", "@storybook/addon-essentials", 'storybook-addon-themes', 'storybook-dark-mode'],
   core: {
     builder: "@storybook/builder-vite"
   },

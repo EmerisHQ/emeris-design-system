@@ -1,7 +1,7 @@
 // body for specificity - probably should create a 'theme' for tippy instead.
 body {
   .tippy-box {
-    @apply bg-text;
+    // @apply bg-text;
     @apply text-inverse;
     @apply -text-1;
     @apply leading-copy;
