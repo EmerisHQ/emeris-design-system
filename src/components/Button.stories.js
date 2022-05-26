@@ -19,4 +19,5 @@ Default.args = {
 export const Link = Template.bind({});
 Link.args = { 
   name: 'Link',
+  variant: 'link'
 };
