@@ -9,30 +9,29 @@
     <button
       :class="[
         `button-${variant}`,
-        { 'button-none': size === 'none' },
         alignTextStyle,
-        { 'text-0 leading-5 rounded-xl': size === 'md' },
-        { 'button-sm -text-1 leading-4 rounded-lg': size === 'sm' },
-        { 'h-12': variant !== 'link' && size === 'md' },
-        { 'h-9': variant !== 'link' && size === 'sm' },
-        { 'w-12': !name && variant !== 'link' && size === 'md' && !fullWidth },
-        { 'w-9': !name && variant !== 'link' && size === 'sm' && !fullWidth },
-        { 'py-3.5 px-8': name && variant !== 'link' && size === 'md' },
-        { 'py-2.5 px-5': name && variant !== 'link' && size === 'sm' },
+        { 'text-0 leading-5 rounded-xl': size === Size.md },
+        { 'button-sm -text-1 leading-4 rounded-lg': size === Size.sm },
+        { 'h-12': variant !== ButtonVariant.link && size === Size.md },
+        { 'h-9': variant !== ButtonVariant.link && size === Size.sm },
+        { 'w-12': !name && variant !== ButtonVariant.link && size === Size.md && !fullWidth },
+        { 'w-9': !name && variant !== ButtonVariant.link && size === Size.sm && !fullWidth },
+        { 'py-3.5 px-8': name && variant !== ButtonVariant.link && size === Size.md },
+        { 'py-2.5 px-5': name && variant !== ButtonVariant.link && size === Size.sm },
         { 'w-full': fullWidth },
         { '!shadow-none': !shadow },
         { '!rounded-full': rounded }, // Was not working at all (sizes were overriding the rounded property)
         {
           'bg-surface shadow-button transform focus-visible:ring-2 focus:ring-tertiary focus:ring-opacity-50':
-            variant !== 'link',
+            variant !== ButtonVariant.link,
         },
         {
           'focus:-translate-y-px hover:-translate-y-px': animate,
         },
-        { 'theme-inverse dark:theme-inverse text-text': variant === 'primary' },
-        { 'relative inline': variant === 'link' },
-        { 'bg-brand-to-r': status === 'loading' && variant === 'primary' },
-        { 'loading pointer-events-none cursor-default': status === 'loading' },
+        { 'theme-inverse dark:theme-inverse text-text': variant === ButtonVariant.primary },
+        { 'relative inline': variant === ButtonVariant.link },
+        { 'bg-brand-to-r': status === ButtonStatus.loading && variant === ButtonVariant.primary },
+        { 'loading pointer-events-none cursor-default': status === ButtonStatus.loading },
         disabled ? 'text-inactive pointer-events-none cursor-default' : 'cursor-pointer',
       ]"
       :disabled="disabled"
@@ -55,17 +54,18 @@
 </template>
 <script setup lang="ts">
 import { computed, defineComponent, ref } from 'vue';
+import { Size, Align, ButtonStatus, ButtonVariant } from '../types';
 
 interface Props {
   name?: string
-  alignText?: string,
-  variant?: string,
-  size?: string,
+  alignText?: Align,
+  variant?: ButtonVariant,
+  size?: Size,
   fullWidth?: boolean,
   rounded?: boolean,
   capitalize?: boolean,
   shadow?: boolean,
-  status?: string,
+  status?: ButtonStatus,
   clickFunction?: Function,
   tooltipText?: string,
   isOutline?: boolean,
@@ -73,7 +73,7 @@ interface Props {
   animate?: boolean,
 }
 
-const props = withDefaults(defineProps<Props>(), { alignText: 'center', variant: 'primary', size: 'md', fullWidth: true, shadow: true, status: 'active', clickFunction: null, tooltipText: '', isOutline: false, disabled: false, animate: true });
+const props = withDefaults(defineProps<Props>(), { alignText: Align.center, variant: ButtonVariant.primary, size: Size.md, fullWidth: true, shadow: true, status: ButtonStatus.active, clickFunction: null, tooltipText: '', isOutline: false, disabled: false, animate: true });
 
 const emit = defineEmits<{
   (e: 'click', event: any): void;
@@ -93,15 +93,15 @@ function toggleToolTip(type) {
 
 const alignTextStyle = computed(() => {
   if (!props.name && !props.alignText) return 'flex items-center justify-center';
-  if (props.alignText === 'center') return 'flex items-center justify-center';
-  if (props.alignText === 'left') return 'flex items-center justify-start';
-  if (props.alignText === 'right') return 'flex items-center justify-end';
+  if (props.alignText === Align.center) return 'flex items-center justify-center';
+  if (props.alignText === Align.left) return 'flex items-center justify-start';
+  if (props.alignText === Align.right) return 'flex items-center justify-end';
   return '';
 });
 
 const textClasses = computed(() => {
   return [
-    { invisible: props.status === 'loading' },
+    { invisible: props.status === ButtonStatus.loading },
     { relative: props.variant === 'link' },
     { capitalize: props.capitalize },
   ];

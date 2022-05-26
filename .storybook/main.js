@@ -3,7 +3,7 @@ const path = require("path");
 const WindiCSS = require("vite-plugin-windicss").default;
 
 module.exports = {
-  stories: ['../src/components/**/*.stories.js'],
+  stories: ['../src/components/**/*.stories.js', '../src/components/**/*.stories.ts'],
   addons: ["@storybook/addon-links", "@storybook/addon-essentials", 'storybook-addon-themes', 'storybook-dark-mode'],
   core: {
     builder: "@storybook/builder-vite"
