@@ -1,0 +1,59 @@
+/* Importing everything temporarily */
+//@import 'https://rsms.me/inter/inter.css';
+
+:root {
+  font-family: 'Inter', sans-serif;
+}
+@supports (font-variation-settings: normal) {
+  :root {
+    font-family: 'Inter var', sans-serif;
+  }
+}
+
+/*
+   Font families:
+
+   - "Inter"            static "traditional" font for older web browsers
+   - "Inter var"        single-axis variable font for all modern browsers
+
+   Individual font import declarations from https://rsms.me/inter/inter.css
+
+   */
+
+/*------------------------- static ------------------------- */
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/fonts/Inter-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  // semi-bold because 560 rounded makes 600
+  src: url('/assets/fonts/Inter-SemiBold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/assets/fonts/Inter-Bold.woff') format('woff');
+}
+
+/* ----------------------- variable ----------------------- */
+
+@font-face {
+  font-family: 'Inter var';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/assets/fonts/Inter.var.woff2') format('woff2');
+  font-named-instance: 'Regular';
+}
