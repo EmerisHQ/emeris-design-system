@@ -7,7 +7,9 @@
 # Stack
 - Vue 3
 - Typescript
-- Vite
-- Windi CSS
+- Vite (Library mode)
+- Tailwind CSS
 - Storybook
 
+# Config
+Inspired in <https://divotion.com/blog/creating-a-component-library-with-vite-and-storybook> and <https://github.com/openwebstacks/vue-component-library-starter>.

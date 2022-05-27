@@ -1,5 +1,5 @@
 import Button from './Button.vue';
-import { Size, Align, ButtonStatus, ButtonVariant } from '../types';
+import { Size, Align, ButtonStatus, ButtonVariant } from '../../types';
 
 export default {
   component: Button,

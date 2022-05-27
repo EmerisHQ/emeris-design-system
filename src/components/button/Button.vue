@@ -54,7 +54,7 @@
 </template>
 <script setup lang="ts">
 import { computed, defineComponent, ref } from 'vue';
-import { Size, Align, ButtonStatus, ButtonVariant } from '../types';
+import { Size, Align, ButtonStatus, ButtonVariant } from '../../types';
 
 interface Props {
   name?: string

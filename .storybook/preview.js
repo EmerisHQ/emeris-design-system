@@ -1,4 +1,3 @@
-import "virtual:windi.css";
 import '../src/assets/scss/index.scss';
 
 export const parameters = {

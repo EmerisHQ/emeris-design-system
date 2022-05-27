@@ -1,18 +1,29 @@
 {
   "name": "emeris-design-system",
+  "author": "Emeris team",
+  "description": "The Emeris Design system is a component library that will be shared between the Emeris projects.",
   "private": true,
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
+    "build": "vite build",
     "preview": "vite preview",
+    "lint": "eslint .",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
+  "files": ["dist"],
+  "main": "./dist/emeris-design-system.umd.js",
+  "module": "./dist/emeris-design-system.es.js",
+  "exports": {
+    ".": {
+      "require": "./dist/emeris-design-system.umd.js",
+      "import": "./dist/emeris-design-system.es.js"
+    }
+  },
   "dependencies": {
     "sass": "^1.50.0",
-    "vue": "^3.2.25",
-    "windicss-webpack-plugin": "^1.6.7"
+    "vue": "^3.2.25"
   },
   "devDependencies": {
     "@babel/core": "^7.17.9",
@@ -39,10 +50,8 @@
     "tailwindcss": "^3.0.24",
     "typescript": "^4.5.4",
     "vite": "^2.9.0",
-    "vite-plugin-windicss": "^1.8.3",
     "vue-loader": "^16.8.3",
-    "vue-tsc": "^0.29.8",
-    "windicss": "^3.5.1"
+    "vue-tsc": "^0.29.8"
   },
   "lint-staged": {
     "*.{scss,css,html,json,md}": [
