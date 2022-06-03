@@ -1,4 +1,4 @@
-import Button from './Button.vue';
+import Button from '../components/Button/Button.vue';
 import { Size, Align, ButtonStatus, ButtonVariant } from '../types';
 
 export default {
@@ -42,13 +42,7 @@ const Template = (args) => ({
   template: '<Button v-bind="args" />',
 });
 
-export const Default = Template.bind({});
-Default.args = {
-  name: 'Default'
-};
-
-export const Link = Template.bind({});
-Link.args = { 
-  name: 'Link',
-  variant: 'link',
+export const Primary = Template.bind({});
+Primary.args = {
+  name: 'Primary'
 };

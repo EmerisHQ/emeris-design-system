@@ -10,8 +10,7 @@ export enum Align {
 }
 
 export enum ButtonVariant {
-  primary,
-  link
+  primary
 }
 
 export enum ButtonStatus {

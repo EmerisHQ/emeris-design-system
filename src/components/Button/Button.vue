@@ -10,32 +10,25 @@
       :class="[
         `button-${variant}`,
         alignTextStyle,
-        { 'text-0 leading-5 rounded-xl': size === Size.md },
-        { 'button-sm -text-1 leading-4 rounded-lg': size === Size.sm },
-        { 'h-12': variant !== ButtonVariant.link && size === Size.md },
-        { 'h-9': variant !== ButtonVariant.link && size === Size.sm },
-        { 'w-12': !name && variant !== ButtonVariant.link && size === Size.md && !fullWidth },
-        { 'w-9': !name && variant !== ButtonVariant.link && size === Size.sm && !fullWidth },
-        { 'py-3.5 px-8': name && variant !== ButtonVariant.link && size === Size.md },
-        { 'py-2.5 px-5': name && variant !== ButtonVariant.link && size === Size.sm },
+        { 'text-0 leading-5 rounded-xl h-12': size === Size.md },
+        { 'button-sm -text-1 leading-4 rounded-lg h-9': size === Size.sm },
+        { 'w-12': !name && size === Size.md && !fullWidth },
+        { 'w-9': !name && size === Size.sm && !fullWidth },
+        { 'py-3.5 px-8': name && size === Size.md },
+        { 'py-2.5 px-5': name && size === Size.sm },
         { 'w-full': fullWidth },
         { '!shadow-none': !shadow },
         { '!rounded-full': rounded }, // Was not working at all (sizes were overriding the rounded property)
         {
-          'bg-surface shadow-button transform focus-visible:ring-2 focus:ring-tertiary focus:ring-opacity-50':
-            variant !== ButtonVariant.link,
-        },
-        {
           'focus:-translate-y-px hover:-translate-y-px': animate,
         },
         { 'theme-inverse dark:theme-inverse text-text': variant === ButtonVariant.primary },
-        { 'relative inline': variant === ButtonVariant.link },
         { 'bg-brand-to-r': status === ButtonStatus.loading && variant === ButtonVariant.primary },
         { 'loading pointer-events-none cursor-default': status === ButtonStatus.loading },
         disabled ? 'text-inactive pointer-events-none cursor-default' : 'cursor-pointer',
       ]"
       :disabled="disabled"
-      class="button relative font-medium border-none focus:outline-none active:opacity-70 active:transform-none transition cursor-pointer select-none text-ellipsis whitespace-nowrap outline-offset-4"
+      class="button relative font-medium border-none focus:outline-none active:opacity-70 active:transform-none transition cursor-pointer select-none text-ellipsis whitespace-nowrap outline-offset-4 bg-surface shadow-button transform focus-visible:ring-2 focus:ring-tertiary focus:ring-opacity-50"
       @click="clickFunction?.($event), emit('click', $event)"
     >
 
@@ -54,7 +47,7 @@
 </template>
 <script setup lang="ts">
 import { computed, defineComponent, ref } from 'vue';
-import { Size, Align, ButtonStatus, ButtonVariant } from '../types';
+import { Size, Align, ButtonStatus, ButtonVariant } from '../../types';
 
 interface Props {
   name?: string
@@ -102,7 +95,6 @@ const alignTextStyle = computed(() => {
 const textClasses = computed(() => {
   return [
     { invisible: props.status === ButtonStatus.loading },
-    { relative: props.variant === 'link' },
     { capitalize: props.capitalize },
   ];
 });

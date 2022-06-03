@@ -1,4 +1,4 @@
-import BaseInput from './BaseInput.vue';
+import BaseInput from '../components/BaseInput.vue';
 
 export default {
   component: BaseInput,
