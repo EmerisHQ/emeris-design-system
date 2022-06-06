@@ -1,19 +1,20 @@
 export enum Size {
-  md,
-  sm
+  md = 'md',
+  sm = 'sm'
 }
 
 export enum Align {
-  left,
-  center,
-  right
+  left = 'left',
+  center = 'center',
+  right = 'right'
 }
 
 export enum ButtonVariant {
-  primary
+  primary = 'primary',
+  secondary = 'secondary'
 }
 
 export enum ButtonStatus {
-  loading,
-  active
+  loading = 'loading',
+  active = 'active'
 }
